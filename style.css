@@ -1,0 +1,790 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Use Montserrat for a modern, clean aesthetic */
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Root variables for colour palette inspired by Motrio */
+:root {
+    /*
+     * Base colours
+     *
+     * The primary colour is now a deeper, more elegant red (#bf1136) instead of the original Motrio red.
+     * Secondary remains a deep black for high contrast, while text colours are adjusted for better readability.
+     */
+    --primary-color: #bf1136;    /* Custom red used across buttons, highlights and accents */
+    --secondary-color: #000000;  /* Deep black for backgrounds and dark elements */
+    --accent-color: #216441;     /* Rich green used for the inner circle of CTA buttons */
+    --text-light: #ffffff;       /* White for primary text on dark backgrounds */
+    --text-muted: #c7c9c6;       /* Soft grey for secondary text and taglines */
+    --gray-light: #f5f5f5;      /* Light background for cards */
+}
+
+body {
+    background: var(--secondary-color);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Header styling */
+header {
+    background: transparent;
+    color: var(--text-light);
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: padding 0.3s, background-color 0.3s;
+}
+
+/*
+ * The topbar contains the logo, navigation links and menu toggle. Set
+ * the flex direction to row so items align horizontally by default.
+ */
+.topbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Navigation styling */
+nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+nav img {
+    height: 60px;
+    margin-right: 20px;
+
+}
+
+/* Center the navigation links horizontally within the header.
+   The links container is absolutely positioned to remain centred regardless of logo width. */
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Navigation links: centre align and style for better contrast on dark headers. */
+header nav .nav-links a {
+    color: var(--text-muted) !important;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header nav .nav-links a:hover {
+    /* Invert to dark text on a light grey pill on hover */
+    background-color: var(--text-muted);
+    color: var(--secondary-color);
+}
+
+.hero {
+    height: 100vh; /* prend tout le haut de la page */
+    /*
+     * Lighten the gradient overlay so the background image remains visible while still
+     * providing enough contrast for text. A lower alpha value yields a brighter image.
+     */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('assets/background.jpg') no-repeat center center/cover;
+    background-attachment: fixed; /* effet de parallaxe (optionnel) */
+    display: flex;
+    /*
+     * Align the hero content to the left like the Motrio inspiration.
+     * justify-content moves the internal container toward the start of the horizontal axis.
+     */
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    color: var(--text-light);
+    position: relative;
+}
+
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*
+     * Reduce the darkness of the overlay so that the left‑aligned text remains legible
+     * against the background image without overpowering it.
+     */
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.hero-content {
+    z-index: 1;
+    max-width: 900px;
+    padding: 0 20px;
+    /*
+     * Use flex layout so we can align children to the start and stack them vertically.
+     */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Fade in from below on page load */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.3s;
+    /* Slight left margin to separate the text from the very edge of the viewport */
+    margin-left: 5%;
+    /* Adjust the vertical position slightly upward for better balance */
+    margin-top: -30px;
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hero title overrides */
+.hero-title {
+    font-size: 3.2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Container for the tagline lines in the hero section */
+.hero-taglines {
+    display: flex;
+    flex-direction: column;
+    /* Align taglines to the start so the icons and text stack nicely to the left */
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+/* Single line inside the hero taglines */
+.tagline-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+    /* Use the muted text colour for the tagline text to provide a subtle contrast */
+}
+
+.tagline-line img {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+/* Colour the tagline text with a muted tone for a softer look */
+.tagline-line span {
+    color: var(--text-muted);
+}
+
+/* CTA button styled after Motrio’s pill button */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    /* Match the width of any companion buttons in the hero */
+    width: 100%;
+    max-width: 420px;
+}
+
+.cta-button span.circle {
+    /*
+     * The small circle on the right of the CTA uses the accent colour for its background
+     * and the primary colour for the arrow text. This mirrors the Motrio style while
+     * incorporating our custom colour palette.
+     */
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    margin-left: 20px;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em;
+}
+
+.cta-button:hover {
+    /* Invert the outer button colours on hover */
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.cta-button:hover .circle {
+    /* Invert the inner circle colours on hover */
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+}
+
+/* Group container for multiple CTAs under the hero and styles for secondary buttons */
+
+/* The group of secondary CTAs below the main button.  
+   It shares the same maximum width as the primary CTA and stacks its children vertically. */
+.cta-group {
+    /*
+     * Arrange CTAs in a flexible row that can wrap onto multiple lines
+     * when there isn’t enough horizontal space. The group has no
+     * artificial maximum width so it can expand within its parent,
+     * and margins are simplified for consistency across breakpoints.
+     */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 18px;
+    max-width: 100%;
+}
+
+/* Secondary CTA buttons: match styling of the primary CTA but with transparent background by default. */
+.cta-small {
+    display: inline-flex;
+    align-items: center;
+	text-align: center;
+	white-space: nowrap;
+    justify-content: center;
+    padding: 10px 40px;
+    font-size: 0.8em;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    max-width: 320px;
+}
+
+.cta-small:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.section {
+    padding: 60px 20px;
+    text-align: center;
+    /* Limit the width of generic sections to improve readability on very
+       large displays and centre the content within the viewport. */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    margin-bottom: 20px;
+    color: var(--text-light);
+    font-size: 2em;
+}
+
+/*
+ * Use a CSS grid for the services and gallery sections. A grid with
+ * auto‑fit and a minimum column width automatically adjusts the number
+ * of cards per row based on the available viewport size. When there
+ * isn’t enough space for multiple columns, the items will stack on
+ * top of one another. This approach removes the need for hard coded
+ * widths on the cards and ensures smooth resizing on desktops,
+ * tablets and phones.
+ */
+.services, .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/*
+ * Let the cards fill the available grid cell. Using 100% width here
+ * allows the auto‑fit grid to determine the number of columns based on
+ * minmax(250px, 1fr) defined on the parent. Cards will scale down to
+ * 250px on smaller devices and grow up to fill the row on larger
+ * screens.
+ */
+.service-item, .gallery-item {
+    background: #222;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-item img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+}
+
+.service-item h3 {
+    margin-bottom: 10px;
+    color: #00b4d8;
+}
+
+.gallery-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Smooth hover effects for service and gallery cards */
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+}
+
+/* Consistent sizing for our service icons */
+.service-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-info {
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+/* Make email links stand out while respecting the colour palette */
+.contact-email {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.contact-email:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Quick links section styling */
+.quick-links {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 50px 20px;
+}
+
+/*
+ * For the quick links at the top of the page, adopt a responsive grid
+ * similar to the services section. Each card will maintain at least
+ * 260px in width and expand to fill the available space. On wide
+ * screens this results in three cards in a row; on tablets there may
+ * be two; and on phones a single column. This grid also centers
+ * itself and limits its maximum width.
+ */
+.quick-links-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*
+ * Cards inside the quick link grid should no longer have a fixed
+ * width. Removing the explicit width allows them to stretch across
+ * their grid cell. They maintain padding, border and other
+ * stylistic details.
+ */
+.quick-link-card {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--text-light);
+    border-radius: 15px;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.quick-link-card:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+    transform: translateY(-3px);
+}
+
+.quick-link-card .quick-text {
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1.2;
+}
+
+.quick-link-card .quick-price {
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+.quick-link-card .quick-arrow {
+    align-self: flex-end;
+    font-size: 1.5em;
+    transition: transform 0.3s;
+}
+
+.quick-link-card:hover .quick-arrow {
+    transform: translateX(5px);
+}
+
+/* Popular repairs section */
+.repairs {
+    /* Light grey background with dark text for better readability */
+    background-color: var(--text-muted);
+    color: var(--secondary-color);
+    padding: 60px 20px;
+    /* Centre the repairs section and constrain its maximum width */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.repairs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    max-width: 1000px;
+    margin: 40px auto;
+    text-align: left;
+}
+
+.repairs-list div {
+    padding: 10px;
+    border-left: 3px solid var(--primary-color);
+    font-size: 1em;
+    background-color: rgba(0,0,0,0.02);
+    transition: background-color 0.3s;
+}
+
+.repairs-list div:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Ensure the heading inside the repairs section uses dark text */
+.repairs h2 {
+    color: var(--secondary-color);
+}
+
+/* Primary button used for forms and simple calls-to-action */
+.btn-primary {
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Contact form styling */
+.contact-form {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.contact-form .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.form-input {
+    flex: 1 1 250px;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #111;
+    color: var(--text-light);
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #111;
+    color: var(--text-light);
+    min-height: 150px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #777;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+/* Responsive navigation and overlay menu styles */
+/* Position the menu container on the right of the header */
+.nav-menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+/* Toggle button for opening and closing the overlay menu */
+.menu-toggle {
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    border: 2px solid var(--text-muted);
+    background-color: var(--text-light);
+    color: var(--text-muted);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hide the 'Fermer' text by default; it will show when menu is open */
+.menu-toggle .close-text {
+    display: none;
+}
+
+/* Hover effect for the menu toggle: invert the colours */
+.menu-toggle:hover {
+    background-color: var(--text-muted);
+    color: var(--secondary-color);
+}
+
+/* When the menu is open, swap the labels */
+.menu-open .menu-toggle .open-text {
+    display: none;
+}
+.menu-open .menu-toggle .close-text {
+    display: inline;
+}
+
+/* When the menu is open, keep the toggle subtle grey-on-white style */
+.menu-open .menu-toggle {
+    background-color: var(--text-light);
+    color: var(--text-muted);
+    border-color: var(--text-muted);
+}
+
+/* Overlay that covers the entire viewport when the menu is active */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--text-muted);
+    color: var(--secondary-color);
+    z-index: 999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* Show the overlay when the body has the menu-open class */
+.menu-open .menu-overlay {
+    display: flex;
+}
+
+/* Hide the navigation links when the overlay menu is open */
+.menu-open .nav-links {
+    display: none;
+}
+
+/* Styling for the list of links inside the overlay */
+.overlay-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.overlay-menu li a {
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--secondary-color);
+    padding: 15px 20px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    display: block;
+}
+
+.overlay-menu li a:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-muted);
+}
+
+/* Prevent page scrolling when the overlay menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+@media (max-width: 800px) {
+    .services, .gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+    .service-item, .gallery-item {
+        width: 80%;
+    }
+    nav {
+        display: inline-flex;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    .nav-links {
+        position: static;
+        transform: none;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    /* On small screens, hide the top navigation links to rely on the overlay menu */
+    header nav .nav-links {
+        display: none;
+    }
+}
+
+/*
+ * Responsive adjustments for different screen sizes.
+ * These media queries fine‑tune typography and layout so the design scales
+ * gracefully from large desktop monitors down to small mobile screens.
+ */
+
+/* Small screens: phones up to 600px wide */
+@media (max-width: 600px) {
+    /* Reduce the hero title size on very small devices */
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    /* Reduce tagline text size for better readability */
+    .hero-taglines .tagline-line {
+        font-size: 1em;
+    }
+    /* Ensure CTAs span the full width of the container */
+    .cta-button,
+    .cta-small {
+        max-width: 100%;
+        width: 100%;
+    }
+    .cta-group {
+        max-width: 100%;
+        width: 100%;
+    }
+    /* Move the hero content further up on small screens for better balance */
+    .hero-content {
+        margin-top: -50px;
+    }
+}
+
+/* Medium screens: tablets between 601px and 1024px */
+@media (min-width: 501px) and (max-width: 1024px) {
+    /* Slightly reduce the hero title on tablets */
+    .hero-content h1 {
+        font-size: 3em;
+    }
+    /* Adjust tagline text size */
+    .hero-taglines .tagline-line {
+        font-size: 1.1em;
+    }
+    /* Increase the maximum width of CTAs for more comfortable tapping on tablets */
+    .cta-button,
+    .cta-small,
+    .cta-group {
+        max-width: 380px;
+    }
+}
+
+/* Header styling when scrolled */
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    padding: 10px 40px;
+}
+
+header.scrolled nav img {
+    height: 40px;
+}
+
+/* Fade-in animation keyframes */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Shrinking header effect */

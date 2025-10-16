@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNOM Motor Garage</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Import a modern Google font for a sleek, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header>
+      <nav class="topbar">
+        <!-- Colonne gauche : logo -->
+        <a href="#accueil" class="brand">
+          <img src="assets/logo.png" alt="VNOM Motor Garage logo">
+        </a>
+
+        <!-- Colonne centre : liens de navigation -->
+        <div class="nav-links">
+          <a href="#accueil">Accueil</a>
+          <a href="#services">Services</a>
+          <a href="#galerie">Galerie</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <!-- Colonne droite : bouton menu pour l'overlay -->
+        <div class="nav-menu">
+          <button class="menu-toggle" onclick="toggleMenu()">
+            <span class="open-text">Menu</span>
+            <span class="close-text">Fermer</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Overlay menu for mobile/compact view -->
+    <div id="menu-overlay" class="menu-overlay">
+      <ul class="overlay-menu">
+        <li><a href="#contact">Direction le garage</a></li>
+        <li><a href="#services">Voir tous les services</a></li>
+        <li><a href="#galerie">Espace garage</a></li>
+      </ul>
+    </div>
+
+    <!-- Hero section -->
+    <section id="accueil" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <!-- Main heading for brand visibility -->
+            <h1 class="hero-title">VNOM Motor Garage</h1>
+            <!-- Three succinct tag lines with intuitive icons -->
+            <div class="hero-taglines">
+                <div class="tagline-line">
+                    <img src="assets/logo_frein.png" alt="Icône frein">
+                    <span>Entretien &amp; préparation automobile</span>
+                </div>
+                <div class="tagline-line">
+                    <img src="assets/logo_motor.png" alt="Icône moteur">
+                    <span>Projet personnalisé</span>
+                </div>
+                <div class="tagline-line">
+                    <img src="assets/logo_huile.png" alt="Icône huile">
+                    <span>Échappement sur mesure</span>
+                </div>
+            </div>
+
+            <!-- Additional CTAs: contact and directions -->
+            <div class="cta-group">
+                <a href="tel:0680649607" class="cta-small">Contacter service</a>
+                <a href="https://maps.google.com/?q=150%20Chem.%20du%20Tucaut,%2031600%20Eaunes" class="cta-small">Direction garage</a>
+            </div>
+			
+            <!-- Call‑to‑action button that smoothly scrolls to the contact section -->
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                <span>Prendre un rendez‑vous</span>
+                <span class="circle">→</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Quick links inspired by Motrio -->
+    <section id="quick-links" class="quick-links">
+        <div class="quick-links-container">
+            <a href="#contact" class="quick-link-card">
+                <div class="quick-text">Prendre rendez‑vous pour une vidange + filtre à huile</div>
+                <div class="quick-price">à partir de 158,90€</div>
+                <div class="quick-arrow">→</div>
+            </a>
+            <a href="#contact" class="quick-link-card">
+                <div class="quick-text">Prendre rendez‑vous pour une batterie</div>
+                <div class="quick-price">à partir de 236,90€</div>
+                <div class="quick-arrow">→</div>
+            </a>
+            <a href="#services" class="quick-link-card">
+                <div class="quick-text">Voir tous les services</div>
+                <div class="quick-price">&nbsp;</div>
+                <div class="quick-arrow">→</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Popular repairs inspired by Motrio -->
+    <section id="popular-repairs" class="section repairs">
+        <h2>Réparations populaires</h2>
+        <div class="repairs-list">
+            <div>AdBlue</div>
+            <div>Amortisseurs</div>
+            <div>Balais d’essuie‑glace</div>
+            <div>Batterie</div>
+            <div>Carrosserie</div>
+            <div>Climatisation</div>
+            <div>Contrôle technique</div>
+            <div>Diagnostic électronique</div>
+            <div>Distribution</div>
+            <div>Entretien du véhicule</div>
+            <div>Huile &amp; filtres</div>
+            <div>Pneumatiques</div>
+            <div>Remplacement des bougies</div>
+            <div>Système de freinage</div>
+            <div>Véhicules électriques et hybrides</div>
+        </div>
+    </section>
+    <!-- Services section -->
+    <section id="services" class="section">
+        <h2>Nos Services</h2>
+        <div class="services">
+            <!-- Service card: Engine maintenance -->
+            <div class="service-item">
+                <!-- Illustration pour l'entretien moteur : une BMW classique rouge modernisée -->
+                <img src="assets/51662016-1985-bmw-635csi-thumb.webp" alt="Entretien moteur">
+                <h3>Entretien Moteur</h3>
+                <p>Révisions complètes, diagnostics électroniques et entretien moteur pour tous les types de véhicules.</p>
+            </div>
+            <!-- Service card: Diagnostic and repair -->
+            <div class="service-item">
+                <!-- Illustration pour le diagnostic : tableau de bord moderne -->
+                <img src="assets/image-13.webp" alt="Diagnostic &amp; Réparation">
+                <h3>Diagnostic &amp; Réparation</h3>
+                <p>Diagnostic précis de vos voyants et anomalies de bord pour intervenir efficacement.</p>
+            </div>
+            <!-- Service card: Custom exhaust -->
+            <div class="service-item">
+                <!-- Illustration pour l'échappement sur mesure : atelier moderne -->
+                <img src="assets/file-render.webapp4you.eu_.jpeg.webp" alt="Échappement sur mesure">
+                <h3>Échappement sur mesure</h3>
+                <p>Conception et installation d'échappements sur mesure pour optimiser performances et sonorité.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery section -->
+    <section id="galerie" class="section">
+        <h2>Galerie</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="assets/51662016-1985-bmw-635csi-thumb.webp" alt="BMW 635CSI">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/image-13.webp" alt="Tableau de bord">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/file-render.webapp4you.eu_.jpeg.webp" alt="Atelier moderne">
+            </div>
+        </div>
+    </section>
+    <!-- Contact section -->
+    <section id="contact" class="section contact">
+        <h2>Contact</h2>
+        <div class="contact-info">
+            <p><strong>Adresse:</strong> 150 chemin du Tucaut, 31600 Eaunes</p>
+            <p><strong>Horaires:</strong> 8h30–12h30 / 13h30–18h30</p>
+            <p><strong>Téléphone:</strong> Noël 06.80.64.96.07 — Tom 06.15.59.45.25</p>
+            <p><strong>Email:</strong> <a href="mailto:vnommotorgarage@gmail.com" class="contact-email">vnommotorgarage@gmail.com</a></p>
+        </div>
+        <div class="contact-form">
+            <!-- Simple contact form (no back-end). On submit we display a friendly message -->
+            <form onsubmit="return handleSubmit(event);">
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="Votre nom">
+                    <input type="email" class="form-input" placeholder="Votre email">
+                </div>
+                <textarea class="form-textarea" placeholder="Votre message"></textarea>
+                <button type="submit" class="btn-primary">Envoyer</button>
+            </form>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 VNOM Motor Garage. Tous droits réservés.</p>
+    </footer>
+    <!-- JavaScript to shrink header on scroll -->
+    <script>
+    // Shrink the header when the user scrolls down
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Handle the contact form submission without backend.
+    function handleSubmit(event) {
+        event.preventDefault();
+        // Provide immediate feedback to the user
+        alert('Merci pour votre message ! Nous vous contacterons bientôt.');
+        // Reset form fields
+        event.target.reset();
+        return false;
+    }
+
+    // Toggle the overlay menu by adding/removing the 'menu-open' class on the body.
+    function toggleMenu() {
+        document.body.classList.toggle('menu-open');
+    }
+    </script>
+</body>
+</html>
